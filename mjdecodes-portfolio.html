@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mjdecodes — Life Counselling by Mohit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%232C4A3E'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='28' font-style='italic' font-weight='600' fill='%23B07340'>mj</text></svg>">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A18;
+    --warm: #B07340;
+    --muted: #5C5850;
+    --light-warm: #EDE6D6;
+    --accent: #2C4A3E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+  }
+
+  .hero-left {
+    background: var(--accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 4vw, 56px);
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 30px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-tagline em {
+    color: var(--warm);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.85);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 380px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-right {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hello-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: 20px;
+  }
+
+  .intro-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--dark);
+    margin-bottom: 30px;
+  }
+
+  .intro-body {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #4a4a46;
+    margin-bottom: 40px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--warm);
+    color: #fff;
+    padding: 16px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* WHAT I HELP WITH */
+  .services {
+    padding: 100px 80px;
+    background: var(--dark);
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: 16px;
+  }
+
+  /* Darker label for light background sections */
+  .section-label-dark {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #7a4e28;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3vw, 48px);
+    color: #fff;
+    margin-bottom: 60px;
+    max-width: 500px;
+    line-height: 1.3;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.04);
+    padding: 40px 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s ease;
+  }
+
+  .service-card:hover {
+    background: rgba(200,149,108,0.1);
+  }
+
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .service-name {
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 100px 80px;
+    background: var(--light-warm);
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .step {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+  }
+
+  .step.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+    font-style: italic;
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 50px;
+  }
+
+  .step-text h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--dark);
+  }
+
+  .step-text p {
+    font-size: 14px;
+    color: #4a4a46;
+    line-height: 1.7;
+  }
+
+  .pricing-card {
+    background: var(--accent);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card::after {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    bottom: -40px;
+    right: 20px;
+    line-height: 1;
+  }
+
+  .pricing-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: 20px;
+  }
+
+  .pricing-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .pricing-sub {
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .pricing-features li {
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pricing-features li::before {
+    content: '—';
+    color: var(--warm);
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 80px;
+    background: var(--cream);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .testimonial-card {
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.08);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--warm);
+    line-height: 0.8;
+    margin-bottom: 24px;
+    opacity: 0.4;
+  }
+
+  .testimonial-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: #3a3a38;
+    margin-bottom: 28px;
+  }
+
+  .testimonial-name {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm);
+  }
+
+  .testimonial-context {
+    font-size: 12px;
+    color: #4a4a46;
+    margin-top: 4px;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 100px 80px;
+    background: var(--dark);
+    text-align: center;
+  }
+
+  .contact .section-title {
+    margin: 0 auto 16px;
+  }
+
+  .contact-sub {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    margin-bottom: 48px;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: var(--warm);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,149,108,0.3);
+    padding-bottom: 4px;
+    transition: border-color 0.3s ease;
+  }
+
+  .contact-email:hover {
+    border-color: var(--warm);
+  }
+
+  .contact-note {
+    margin-top: 48px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 1px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    padding: 24px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 60px 32px; min-height: 50vh; }
+    .hero-right { padding: 60px 32px; }
+    .services, .how, .testimonials, .contact { padding: 70px 32px; }
+    .how-grid { grid-template-columns: 1fr; gap: 48px; }
+    footer { flex-direction: column; gap: 8px; padding: 24px 32px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="brand">mjdecodes</div>
+    <h1 class="hero-tagline">When life gets loud,<br>let's find your <em>clarity.</em></h1>
+    <p class="hero-sub">Sometimes you don't need a therapist. You just need someone who listens without judgment and helps you think straight.</p>
+  </div>
+  <div class="hero-right">
+    <div class="hello-label">Hey there</div>
+    <h2 class="intro-text">I'm Mohit — and I help people make sense of the mess.</h2>
+    <p class="intro-body">Relationships, career, finances, friendships, life decisions — basically anything where your head is too full to think clearly. I bring a calm, neutral perspective and advice that's actually practical.<br><br>People in my circle have found it genuinely helpful. And now I'm opening this up.</p>
+    <a href="https://forms.gle/QWMrvLEjAmrq37Vx8" target="_blank" class="cta-btn">Book a Session →</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="padding: 100px 80px; background: var(--light-warm);">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div class="section-label section-label-dark">A bit about me</div>
+    <h2 class="section-title reveal" style="color: var(--dark); margin-bottom: 48px;">I've spent 10+ years solving problems in tech.<br>Now I do it for people.</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px;">
+
+      <div class="reveal">
+        <p style="font-size: 15px; line-height: 1.9; color: var(--dark);">For as long as I can remember, I've been the person my circle turns to when something's weighing on them — a career crossroads, a relationship that doesn't make sense anymore, a decision they can't seem to make. I didn't plan it that way. It just became what I do.</p>
+      </div>
+
+      <div class="reveal">
+        <p style="font-size: 15px; line-height: 1.9; color: var(--dark);">Breaking things down, finding what's actually wrong, and cutting through the noise — that's been my approach in tech for over a decade. The same skill applies to people's lives just as much as it does to code.</p>
+      </div>
+
+      <div class="reveal" style="background: var(--accent); padding: 36px; grid-column: span 1;">
+        <div style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 14px;">Why not just use AI?</div>
+        <p style="font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.9);">AI is designed to make you feel good. It will validate your thinking, soften its feedback, and tell you what you want to hear. I won't. You'll get an honest, objective perspective — even if it's uncomfortable — because that's the only kind that actually helps.</p>
+      </div>
+
+      <div class="reveal" style="background: var(--dark); padding: 36px; grid-column: span 1;">
+        <div style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 14px;">Why I'm doing this</div>
+        <p style="font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.9);">This is not a business. I'm not here to scale, run ads, or build a brand. I deliberately stay off social media for this reason. I want to work with a small number of people, give them my full attention, and genuinely make a difference.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="section-label">What I help with</div>
+  <h2 class="section-title reveal">Whatever's weighing on your mind.</h2>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-name">Relationships</div>
+      <div class="service-desc">Romantic, family, friendships — understanding patterns and finding your footing.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-name">Career</div>
+      <div class="service-desc">Stuck, confused, or just need a second opinion on your next move?</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-name">Finance</div>
+      <div class="service-desc">Practical, grounded guidance on decisions that affect your money and future.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-name">Life Decisions</div>
+      <div class="service-desc">Big or small — when you need a clear head and an honest outside view.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-label section-label-dark">How it works</div>
+  <div class="how-grid">
+    <div>
+      <h2 class="section-title reveal" style="color: var(--dark);">Simple, private, and on your terms.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h3>Fill a short form</h3>
+            <p>Share a bit about yourself and what you'd like to discuss. Helps me come prepared.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h3>Request a time slot</h3>
+            <p>Reach out over email and we'll agree on a time that works for both of us.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h3>Complete payment</h3>
+            <p>Paid via UPI. Details shared once we agree on a slot.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h3>Session confirmed</h3>
+            <p>Once payment is received, you'll get a confirmation email with the meeting link.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <h3>One hour, just us</h3>
+            <p>A focused conversation via Google Meet. No scripts, no judgment.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-text">
+            <h3>Notes sent after</h3>
+            <p>You'll receive a summary of key takeaways so nothing gets lost.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="pricing-label">Session Options</div>
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px;">
+        <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 40px; color: #fff; line-height: 1;">₹800</div>
+          <div style="color: rgba(255,255,255,0.85); font-size: 14px; margin-top: 4px;">30 minutes · Online · Private</div>
+        </div>
+        <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 40px; color: #fff; line-height: 1;">₹1,500</div>
+          <div style="color: rgba(255,255,255,0.85); font-size: 14px; margin-top: 4px;">60 minutes · Online · Private</div>
+        </div>
+        <div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 40px; color: #fff; line-height: 1;">₹2,200</div>
+          <div style="color: rgba(255,255,255,0.85); font-size: 14px; margin-top: 4px;">90 minutes · Online · Private</div>
+        </div>
+      </div>
+      <ul class="pricing-features">
+        <li>Session on Google Meet</li>
+        <li>Pre-session form for context</li>
+        <li>Written notes sent post-session</li>
+        <li>Follow-up available if needed</li>
+        <li>Completely confidential</li>
+      </ul>
+      <a href="https://forms.gle/QWMrvLEjAmrq37Vx8" target="_blank" class="cta-btn">Book a Session →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label section-label-dark">What people say</div>
+  <h2 class="section-title reveal" style="color: var(--dark);">Real conversations.<br>Real clarity.</h2>
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">It was a very helpful session. I'm going to take a few more whenever I need them — and I'd definitely recommend this to others.</p>
+      <div class="testimonial-name">V.S. · Male · Software Engineer</div>
+      <div class="testimonial-context">Career & Life</div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">I absolutely felt heard. The advice was practical, clear and very much to the point. I would love to come back for another session.</p>
+      <div class="testimonial-name">T.S. · Female · 30 · Fashion Entrepreneur</div>
+      <div class="testimonial-context">Relationships</div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">The session was genuinely helpful. Sometimes hearing things from someone else brings clarity and comfort — and that's exactly what this felt like.</p>
+      <div class="testimonial-name">T.S. · Female · 30 · Fashion Entrepreneur</div>
+      <div class="testimonial-context">Relationships</div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">I felt heard. The advice was practical and I could speak openly and comfortably throughout the session.</p>
+      <div class="testimonial-name">A.D. · Female · 32 · Marketing Professional</div>
+      <div class="testimonial-context">Life Decisions</div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">Mohit took the time to really break down an issue that had been lingering for months. Within the first two sessions I could feel lighter already — and for the first time in a long time, I felt this problem could actually be solved.</p>
+      <div class="testimonial-name">S.J. · Female · 33 · Legal Professional</div>
+      <div class="testimonial-context">Life Decisions</div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">The session felt calming, interactive and emotionally reassuring. Everything was listened to patiently and understood. I would definitely come back and recommend it to others who need support or guidance.</p>
+      <div class="testimonial-name">H.S. · Female · 30 · Data Analyst</div>
+      <div class="testimonial-context">Relationships</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="section-label">Ready to talk?</div>
+  <h2 class="section-title" style="text-align:center;">It starts with one conversation.</h2>
+  <p class="contact-sub">Drop me an email and we'll find a time that works for you.</p>
+  <a href="mailto:mjdecodes@gmail.com" class="contact-email">mjdecodes@gmail.com</a>
+  <p class="contact-note">Sessions are conducted online via Google Meet · Completely confidential</p>
+</section>
+
+<footer>
+  <div class="footer-brand">mjdecodes</div>
+  <div class="footer-copy">© 2025 Mohit · All rights reserved</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, entry.target.dataset.delay || 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .step').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 100;
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
