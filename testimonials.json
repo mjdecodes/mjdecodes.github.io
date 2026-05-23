@@ -1,0 +1,58 @@
+[
+  {
+    "initials": "V.S.",
+    "gender": "Male",
+    "age": null,
+    "profession": "Software Engineer",
+    "category": "Career & Life",
+    "quote": "It was a very helpful session. I'm going to take a few more whenever I need them and I'd definitely recommend this to others."
+  },
+  {
+    "initials": "T.S.",
+    "gender": "Female",
+    "age": 30,
+    "profession": "Fashion Entrepreneur",
+    "category": "Relationships",
+    "quote": "I absolutely felt heard. The advice was practical, clear and very much to the point. I would love to come back for another session."
+  },
+  {
+    "initials": "A.D.",
+    "gender": "Female",
+    "age": 32,
+    "profession": "Marketing Professional",
+    "category": "Life Decisions",
+    "quote": "I felt heard. The advice was practical and I could speak openly and comfortably throughout the session."
+  },
+  {
+    "initials": "S.J.",
+    "gender": "Female",
+    "age": 33,
+    "profession": "Legal Professional",
+    "category": "Life Decisions",
+    "quote": "Mohit took the time to really break down an issue that had been lingering for months. Within the first two sessions I could feel lighter already and for the first time in a long time, I felt this problem could actually be solved."
+  },
+  {
+    "initials": "H.S.",
+    "gender": "Female",
+    "age": 30,
+    "profession": "Data Analyst",
+    "category": "Relationships",
+    "quote": "The session felt calming, interactive and emotionally reassuring. Everything was listened to patiently and understood. I would definitely come back and recommend it to others who need support or guidance."
+  },
+  {
+    "initials": "B.M.",
+    "gender": "Female",
+    "age": 33,
+    "profession": "Education Professional",
+    "category": "Career",
+    "quote": "It felt easy to open up because he was calm and really took the time to listen. The session was comfortable and well-paced. I felt heard and found it easy to open up."
+  },
+  {
+    "initials": "S.G.",
+    "gender": "Female",
+    "age": 33,
+    "profession": "Freelancer",
+    "category": "Life & Relationships",
+    "quote": "Even in one hour, with most of the time spent understanding my situation, I was given the space to open up properly. It never felt rushed. I felt really heard and comfortable and this was my first professional session. I will definitely do this again."
+  }
+]

@@ -463,6 +463,99 @@
     margin-top: 60px;
   }
 
+  /* CAROUSEL */
+  .carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .carousel-track-outer {
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.4s ease;
+  }
+
+  .carousel-track .testimonial-card {
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: 0;
+  }
+
+  .carousel-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-btn:hover {
+    background: var(--warm);
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border: none;
+  }
+
+  .carousel-dot.active {
+    background: var(--accent);
+  }
+
+  .view-all-btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .view-all-btn:hover {
+    color: var(--warm);
+    border-color: var(--warm);
+  }
+
+  @media (max-width: 768px) {
+    .carousel-track .testimonial-card {
+      flex: 0 0 100%;
+    }
+    .carousel-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
+    }
+  }
+
   .testimonial-card {
     padding: 40px;
     border: 1px solid rgba(0,0,0,0.08);
@@ -755,50 +848,20 @@
 <section class="testimonials">
   <div class="section-label section-label-dark">What people say</div>
   <h2 class="section-title reveal" style="color: var(--dark);">Real conversations.<br>Real clarity.</h2>
-  <div class="testimonials-grid">
 
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">It was a very helpful session. I'm going to take a few more whenever I need them — and I'd definitely recommend this to others.</p>
-      <div class="testimonial-name">V.S.</div>
-      <div class="testimonial-context">Male · Software Engineer</div><span class="testimonial-category">Career & Life</span>
+  <!-- CAROUSEL -->
+  <div class="carousel-wrapper">
+    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
+    <div class="carousel-track-outer">
+      <div class="carousel-track" id="carouselTrack"></div>
     </div>
+    <button class="carousel-btn next" onclick="moveCarousel(1)">&#8594;</button>
+  </div>
 
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">I absolutely felt heard. The advice was practical, clear and very much to the point. I would love to come back for another session. The session was genuinely helpful. Sometimes hearing things from someone else brings clarity and comfort — and that's exactly what this felt like.</p>
-      <div class="testimonial-name">T.S.</div>
-      <div class="testimonial-context">Female · 30 · Fashion Entrepreneur</div><span class="testimonial-category">Relationships</span>
-    </div>
+  <div class="carousel-dots" id="carouselDots"></div>
 
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">I felt heard. The advice was practical and I could speak openly and comfortably throughout the session.</p>
-      <div class="testimonial-name">A.D.</div>
-      <div class="testimonial-context">Female · 32 · Marketing Professional</div><span class="testimonial-category">Life Decisions</span>
-    </div>
-
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">Mohit took the time to really break down an issue that had been lingering for months. Within the first two sessions I could feel lighter already — and for the first time in a long time, I felt this problem could actually be solved.</p>
-      <div class="testimonial-name">S.J.</div>
-      <div class="testimonial-context">Female · 33 · Legal Professional</div><span class="testimonial-category">Life Decisions</span>
-    </div>
-
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">The session felt calming, interactive and emotionally reassuring. Everything was listened to patiently and understood. I would definitely come back and recommend it to others who need support or guidance.</p>
-      <div class="testimonial-name">H.S.</div>
-      <div class="testimonial-context">Female · 30 · Data Analyst</div><span class="testimonial-category">Relationships</span>
-    </div>
-
-    <div class="testimonial-card reveal">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">It felt easy to open up because he was calm and really took the time to listen to what the other person was saying. The session was comfortable and well-paced. Overall, I had a positive experience and appreciated the calm and attentive approach. I felt heard and found it easy to open up.</p>
-      <div class="testimonial-name">B.M.</div>
-      <div class="testimonial-context">Female · 33 · Education Professional</div><span class="testimonial-category">Career</span>
-    </div>
-
+  <div style="text-align:center; margin-top: 40px;">
+    <a href="reviews.html" class="view-all-btn">View All Reviews →</a>
   </div>
 </section>
 
@@ -832,6 +895,63 @@
     el.dataset.delay = (i % 4) * 100;
     observer.observe(el);
   });
+
+  // CAROUSEL
+  let currentIndex = 0;
+  let testimonials = [];
+  const visibleCount = window.innerWidth <= 768 ? 1 : 3;
+
+  function buildCard(t) {
+    const age = t.age ? ` · ${t.age}` : '';
+    return `
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">${t.quote}</p>
+        <div class="testimonial-name">${t.initials}</div>
+        <div class="testimonial-context">${t.gender}${age} · ${t.profession}</div>
+        <span class="testimonial-category">${t.category}</span>
+      </div>`;
+  }
+
+  function renderCarousel() {
+    const track = document.getElementById('carouselTrack');
+    const dots = document.getElementById('carouselDots');
+    track.innerHTML = testimonials.map(buildCard).join('');
+
+    const totalSlides = testimonials.length - visibleCount + 1;
+    dots.innerHTML = Array.from({length: totalSlides}, (_, i) =>
+      `<button class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="goTo(${i})"></button>`
+    ).join('');
+
+    updatePosition();
+  }
+
+  function updatePosition() {
+    const track = document.getElementById('carouselTrack');
+    const cardWidth = track.querySelector('.testimonial-card').offsetWidth + 24;
+    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function moveCarousel(dir) {
+    const max = testimonials.length - visibleCount;
+    currentIndex = Math.max(0, Math.min(currentIndex + dir, max));
+    updatePosition();
+  }
+
+  function goTo(index) {
+    currentIndex = index;
+    updatePosition();
+  }
+
+  fetch('testimonials.json')
+    .then(r => r.json())
+    .then(data => {
+      testimonials = data;
+      renderCarousel();
+    });
 </script>
 
 </body>

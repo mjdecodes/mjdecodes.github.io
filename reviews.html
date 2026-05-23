@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews — mjdecodes</title>
+<meta name="description" content="Read all reviews and testimonials from mjdecodes counselling sessions. Real people, real experiences.">
+<link rel="canonical" href="https://mjdecodes.github.io/reviews.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%232C4A3E'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='28' font-style='italic' font-weight='600' fill='%23B07340'>mj</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A18;
+    --warm: #B07340;
+    --muted: #5C5850;
+    --light-warm: #EDE6D6;
+    --accent: #2C4A3E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  header {
+    background: var(--accent);
+    padding: 24px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+
+  .header-back {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+
+  .header-back:hover { color: var(--warm); }
+
+  .reviews-hero {
+    padding: 80px 80px 60px;
+    background: var(--dark);
+    text-align: center;
+  }
+
+  .reviews-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .reviews-hero h1 em {
+    color: var(--warm);
+    font-style: italic;
+  }
+
+  .reviews-hero p {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .reviews-count {
+    display: inline-block;
+    margin-top: 28px;
+    background: rgba(255,255,255,0.08);
+    padding: 8px 24px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .reviews-section {
+    padding: 80px;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .filter-btn {
+    padding: 8px 20px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--dark);
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .review-card {
+    background: #fff;
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--warm);
+    line-height: 0.8;
+    margin-bottom: 24px;
+    opacity: 0.4;
+  }
+
+  .review-text {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: #3a3a38;
+    margin-bottom: 28px;
+  }
+
+  .review-name {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: 4px;
+  }
+
+  .review-context {
+    font-size: 12px;
+    color: #4a4a46;
+    margin-top: 2px;
+    line-height: 1.7;
+  }
+
+  .review-category {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(44,74,62,0.1);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .cta-section {
+    background: var(--accent);
+    padding: 80px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 42px);
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    margin-bottom: 36px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--warm);
+    color: #fff;
+    padding: 16px 36px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+
+  .cta-btn:hover { background: #fff; color: var(--accent); }
+
+  footer {
+    background: #111;
+    padding: 24px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    header, .reviews-hero, .reviews-section, .cta-section, footer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="header-brand">mjdecodes</a>
+  <a href="index.html" class="header-back">← Back to Home</a>
+</header>
+
+<div class="reviews-hero">
+  <h1>What people <em>say</em></h1>
+  <p>Honest feedback from real sessions. No filters, no edits — just what people experienced.</p>
+  <div class="reviews-count" id="reviewCount">Loading reviews...</div>
+</div>
+
+<section class="reviews-section">
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" onclick="filterReviews('All', this)">All</button>
+  </div>
+  <div class="reviews-grid" id="reviewsGrid"></div>
+</section>
+
+<section class="cta-section">
+  <h2>Ready to have your own conversation?</h2>
+  <p>Book a session and see what clarity feels like.</p>
+  <a href="https://forms.gle/QWMrvLEjAmrq37Vx8" target="_blank" class="cta-btn">Book a Session →</a>
+</section>
+
+<footer>
+  <div class="footer-brand">mjdecodes</div>
+  <div class="footer-copy">© 2026 Mohit · All rights reserved</div>
+</footer>
+
+<script>
+  let allTestimonials = [];
+
+  function buildCard(t) {
+    const age = t.age ? ` · ${t.age}` : '';
+    return `
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="review-text">${t.quote}</p>
+        <div class="review-name">${t.initials}</div>
+        <div class="review-context">${t.gender}${age} · ${t.profession}</div>
+        <span class="review-category">${t.category}</span>
+      </div>`;
+  }
+
+  function filterReviews(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filtered = category === 'All'
+      ? allTestimonials
+      : allTestimonials.filter(t => t.category === category);
+    document.getElementById('reviewsGrid').innerHTML = filtered.map(buildCard).join('');
+  }
+
+  fetch('testimonials.json')
+    .then(r => r.json())
+    .then(data => {
+      allTestimonials = data;
+
+      document.getElementById('reviewCount').textContent = `${data.length} Reviews`;
+
+      const categories = [...new Set(data.map(t => t.category))];
+      const filterBar = document.getElementById('filterBar');
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.textContent = cat;
+        btn.onclick = () => filterReviews(cat, btn);
+        filterBar.appendChild(btn);
+      });
+
+      document.getElementById('reviewsGrid').innerHTML = data.map(buildCard).join('');
+    });
+</script>
+
+</body>
+</html>
